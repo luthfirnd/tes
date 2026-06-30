@@ -32,7 +32,6 @@ let lastTriggerTime = 0;
 const COOLDOWN = 800; // ms
 
 const indexTrail = [];
-const middleTrail = [];
 
 const MAX_TRAIL = 25;
 
@@ -127,7 +126,6 @@ function onResults(results) {
         lastButton = "";
 
         indexTrail.length = 0;
-        middleTrail.length = 0;
 
         return;
 
@@ -141,25 +139,13 @@ function onResults(results) {
 
     const index = hand[8];
 
-    const middle = hand[12];
-
     const x1 = index.x * canvas.width;
     const y1 = index.y * canvas.height;
-
-    const x2 = middle.x * canvas.width;
-    const y2 = middle.y * canvas.height;
 
     indexTrail.push({
 
         x: x1,
         y: y1
-
-    });
-
-    middleTrail.push({
-
-        x: x2,
-        y: y2
 
     });
 
@@ -169,29 +155,13 @@ function onResults(results) {
 
     }
 
-    if (middleTrail.length > MAX_TRAIL) {
-
-        middleTrail.shift();
-
-    }
-
     drawTrail(indexTrail, "#ff4444");
-
-    drawTrail(middleTrail, "#00d4ff");
 
     drawPointer(
 
         x1,
         y1,
         "#ff4444"
-
-    );
-
-    drawPointer(
-
-        x2,
-        y2,
-        "#00d4ff"
 
     );
 
